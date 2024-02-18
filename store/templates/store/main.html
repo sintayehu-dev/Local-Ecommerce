@@ -15,7 +15,6 @@
           var cookies = document.cookie.split(';');
           for (var i = 0; i < cookies.length; i++) {
               var cookie = cookies[i].trim();
-              // Does this cookie string begin with the name we want?
               if (cookie.substring(0, name.length + 1) === (name + '=')) {
                   cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                   break;
@@ -28,21 +27,13 @@
   var csrftoken = getCookie('csrftoken');
 
   function getCookie(name) {
-    // Split cookie string and get all individual name=value pairs in an array
     var cookieArr = document.cookie.split(";");
-
-    // Loop through the array elements
     for (var i = 0; i < cookieArr.length; i++) {
         var cookiePair = cookieArr[i].split("=");
-
-        /* Removing whitespace at the beginning of the cookie name and compare it with the given string */
-        if (name == cookiePair[0].trim()) {
-            // Decode the cookie value and return
+        if (name == cookiePair[0].trim()) {           
             return decodeURIComponent(cookiePair[1]);
         }
     }
-
-    // Return null if not found
     return null;
 }
 
@@ -54,13 +45,14 @@ if (cart == undefined){
     document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/" 
     
 }
+console.log('cart:', cart)
   
      
   </script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
-        <a class="navbar-brand" href="{% url 'store' %}">Mini-Market</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <a class="navbar-brand" href="{% url 'store' %}">SB-Market</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -72,13 +64,12 @@ if (cart == undefined){
             </li>
            
                 <div class="form-inline my-2 my-lg-0">
-                    <a href="#"class="btn btn-warning">Login</a>
                     <a href="{% url 'cart' %}">
-                       <img  id="cart-icon" src="{% static 'image/cart.png' %}">
+                       <img  id="cart-icon" src="{% static 'image/cart.png' %}" >
                    </a>
                    <p id="cart-total">{{cartItems}}</p>
            
-               
+                   <a href="{% url 'admin:index' %}"><h6 class="btn btn-warning" style="color:white; margin-right:0; margin-left:30px; margin-top:10px">Admin<h6></a>
             </div>
             
          </div>
@@ -90,6 +81,9 @@ if (cart == undefined){
             
             {% endblock content %}
          </div>
+         <footer class="bg-dark text-white text-center py-3  fixed-bottom mt-5">
+          <p>&copy; 2024 Your Ecommerce. All rights reserved.</p>
+      </footer>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 

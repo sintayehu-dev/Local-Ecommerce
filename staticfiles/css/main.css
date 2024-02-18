@@ -107,3 +107,9 @@ h1,h2,h3,h4,h5,h6{
     transform: translateY(-50%);
     margin-top: 3px;
 }
+.admin-icon {
+    width: 30px;  /* Set the desired width for your image */
+    height: 30px; /* Set the desired height for your image */
+    border-radius: 50%; /* Make it a circle */
+    margin-right: 5px; /* Add some margin for spacing */
+}
